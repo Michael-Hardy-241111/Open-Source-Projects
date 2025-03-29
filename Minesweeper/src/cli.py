@@ -4,7 +4,9 @@ def print_board(game: Game):
     """
     Prints the current state of the game board.
     """
+    print("+", " -" * game.board.cols, sep="")
     for row in game.board.cells:
+        print("|", end=" ")
         row_display = []
         for cell in row:
             if cell.is_opened:
