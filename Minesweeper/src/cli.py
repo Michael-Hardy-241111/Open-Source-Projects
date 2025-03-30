@@ -1,4 +1,5 @@
 from game import Game
+from difficulty import difficulty
 
 def print_board(game: Game):
     """
@@ -30,9 +31,12 @@ def start_cli():
     Main function to handle command-line interaction.
     """
     print("欢迎来到扫雷游戏！")
-    rows = int(input("请输入棋盘行数: "))
-    cols = int(input("请输入棋盘列数: "))
-    num_mines = int(input("请输入地雷数量: "))
+    print("请选择难度: 1~3")
+    level = int(input("请输入难度等级: "))
+    if 1 <= level <= 3:
+        print("无效难度，请输入1~3。")
+        return
+    rows, cols, num_mines = difficulty[level]
     game = Game(rows, cols, num_mines)
     while not game.is_game_over:
         print_board(game)
@@ -55,3 +59,4 @@ def start_cli():
             print("无效操作，请输入 'o' 或 'f'。")
     print("最终棋盘状态：")
     print_board(game)
+    return
